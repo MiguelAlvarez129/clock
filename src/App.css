@@ -1,0 +1,7 @@
+.menu{
+  width: 18rem;
+}
+
+.change{
+  transition: font-size 2s;
+}

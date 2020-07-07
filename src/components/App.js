@@ -8,7 +8,7 @@ const App = (props) => {
   const [double, setDouble] = useState(false);
   const [gradient, setGradient] = useState(false);
   const [overSize, setOverSize] = useState(false);
-
+  const [width,setWidth] = useState(1);
   const [cGradient, setCGradient] = useState({
     color1: '#ff0027',
     color2: '#7c00ff',
@@ -26,7 +26,7 @@ const App = (props) => {
     const centerPosition = [center.offsetLeft,center.offsetTop]
     const clockPosition = [clock.offsetLeft,clock.offsetTop]
     const x = centerPosition[0] - clockPosition[0]
-    const y = centerPosition[1] - clockPosition[1]
+    const y = centerPosition[1] - clockPosition[1] + 58
     coorRef.current = [x,y]
     console.log(coorRef.current)
   }
@@ -90,16 +90,20 @@ const App = (props) => {
     setClock(new Date)
   }
 
-
-
-  document.title = moment().format('h:mm:ss')
-
   const setDoublefun = () =>{
     setDouble(!double)
     console.log(coorRef.current)
   }
  
-  let width;
+  const changeWidth = () =>{
+    const actualWidth = document.getElementById('clock').offsetWidth
+    console.log(actualWidth)
+    setWidth(w.value/actualWidth)
+  }
+
+  document.title = moment().format('h:mm:ss')
+
+  let w;
   let bgColor;
   let fColor;
   //let ratio = double ? `scale(${size * 0.90})` : overSize ? `scale(${size * 0.70})` : 'scale(1)';
@@ -122,7 +126,7 @@ const App = (props) => {
       <label htmlFor="backgroundColor" className="mx-2">Select background color </label>
       <input id="backgroundColor" type="color" name="color" ref={node => bgColor = node} onChange={() => newColor(bgColor, true)} />
     </span>;
-
+  
   const bgGradientSelector =
     <span>
       <label htmlFor="gradientColor" className="mx-2">Select background gradient color </label>
@@ -142,7 +146,7 @@ const App = (props) => {
     <div className="clock-div" style={bgType}>
 
       <Navbar turnOn={turnLights} light={light} /> 
-      <Grid center={coorRef.current} centrar={centrar} double={double} overSize={overSize} setDouble={setDoublefun} size={size}/>
+      <Grid width={width} center={coorRef.current} centrar={centrar} double={double} overSize={overSize} setDouble={setDoublefun} size={size}/>
 
       {/* <div className="clock-2 d-flex justify-content-center align-items-center flex-column" >
         <div className='grid-container'
@@ -187,8 +191,8 @@ const App = (props) => {
           <label htmlFor="fontColor" className="mx-2">Select font color </label>
           <input id="fontColor" type="color" name="color" ref={node => fColor = node} onChange={() => newColor(fColor, false)} />
           <div>
-            <input style={{ width: 50 }} ref={node => width = node} onChange={(node) => console.log(width)} type="text" />
-            <button onClick={() => console.log(overSize)}> check </button>
+            <input ref={node => w = node}  type="text" />
+            <button onClick={() => changeWidth()}> Change clock's size! </button>
           </div>
         </div>
       </div>

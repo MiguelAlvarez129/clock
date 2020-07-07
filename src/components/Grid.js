@@ -1,19 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import moment from 'moment';
 const Grid = (props) => {
-  const { double, overSize, setDouble, size,centrar,center} = props
-  const [coordinates, setCoordinates] = useState([])
+  const { double, overSize, setDouble, size,centrar,center,width} = props
+
  
-  //const coorRef = useRef([])
-  
-  // const centrar = () =>{
-  //   const clock = document.getElementById('clock');
-  //   const centerPosition = [clock.parentElement.offsetLeft,clock.parentElement.offsetTop]
-  //   const clockPosition = [clock.offsetLeft,clock.offsetTop]
-  //   const x = centerPosition[0] - clockPosition[0]
-  //   const y = centerPosition[1] - clockPosition[1]
-  //   coorRef.current = [x,y]
-  // }
   useEffect(() => {
     document.addEventListener("dragstart", function (event) {
       const data = event.target.id
@@ -30,7 +20,7 @@ const Grid = (props) => {
     document.addEventListener("dragenter", function (event) {
   
       if (event.target.className == "dropzone") {
-        event.target.style.background = "gray";
+        event.target.style.background = "lightgray";
       }
     });
   
@@ -77,7 +67,8 @@ const Grid = (props) => {
 
  
 
-  let ratio = double ? `scale(${size * 0.90}) translate(${center[0]/size}px,${center[1]/size}px)` : overSize ? `scale(${size * 0.70})` : 'scale(1)';
+  let ratio = double ? `scale(${size * 0.90}) translate(${center[0]/size}px,${center[1]/size}px)` :
+   overSize ? `scale(${size * 0.70})` : `scale(${width})`;
 
   const clockdate = (
    

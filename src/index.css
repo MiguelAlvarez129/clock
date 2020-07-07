@@ -72,18 +72,27 @@ code {
 
 .clock-2{
   height: 100%;
+  
 }
-
 
 .prueba{
   line-height: 100%;
   margin: 0;
 }
 
+.box{
+  width:100%;
+  height:100%;
 
+}
+
+.parentBox{
+  height:33.33%;
+  
+}
 .grid-container{
- 
-  transition: transform 0.5s;
+  
+  transition: transform 0.5s ease-in-out, margin 0.7s ;
   display: grid;
   grid-template-columns:auto auto ;
   grid-template-rows: auto auto auto;
@@ -91,7 +100,9 @@ code {
   row-gap: 0px;
   font-size:100px;
   cursor: pointer;
+  
 }
+
 
 .item-hora{
   margin-top: -10%; 
@@ -175,3 +186,16 @@ input:checked + .slider:before {
 input:checked + .slider {
   background: dodgerblue;
 }
+
+.drop {
+    background:rgb(156, 156, 156);
+}
+
+.dropzone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height:100%;
+}
+

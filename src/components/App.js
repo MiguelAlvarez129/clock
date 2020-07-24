@@ -35,41 +35,38 @@ const App = () => {
     const y = centerPosition[1] - clockPosition[1]
     coorRef.current = [x, y]
   }
+  const scroll = ()=>{
+    const ad =  document.getElementById('ad')
+    console.log(window.pageYOffset)
+   if (85 > window.pageYOffset && window.pageYOffset > 75){
+     ad.style.display = 'inline-block'
+     ad.style.opacity = 0.7
+     setTimeout(() => {
+     ad.style.opacity = 0
+     }, 3000);
+    }
+   }
   const updateSize = () => {
     const parent = window.innerWidth;
     const child = document.getElementById('clock').offsetWidth;
-    const input = document.getElementById('widthInput').value
-    console.log(input)
+    const input = document.getElementById('widthInput').value;
+    
     centrar()
     if (input != null) {
       input >= parent ? setOverSize(true) : setOverSize(false)
     }
     setSize(parent / child);
   }
-
+  
   useEffect(() => {
-    window.addEventListener('scroll',()=>{
-     const ad =  document.getElementById('ad')
-     console.log(window.pageYOffset)
-    if (85 > window.pageYOffset && window.pageYOffset > 75){
-      ad.style.display = 'inline-block'
-      ad.style.opacity = 0.7
-      setTimeout(() => {
-      ad.style.opacity = 0
-      
-      }, 3000);
-      
-     
-    }
-
-    })
+    window.addEventListener('scroll',scroll)
     window.addEventListener('resize', updateSize)
     updateSize()
     return () => {
       window.removeEventListener('resize', updateSize);
-      window.removeEventListener('scroll');
+      window.removeEventListener('scroll',scroll);
     }
-  }, [])
+  }, )
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -190,10 +187,9 @@ const App = () => {
     <div className="clock-div" style={{ color: fcolor }}>
       
       <Navbar turnOn={turnLights} light={light} />
-      <Switch>
-
-        <Route path='/' render={() => <Grid {...props} />} exact />
-      </Switch>
+      
+        <Grid {...props} />
+    
 
       <div className="options bg bg-default " style={light ? lightsOff : lightsOn}>
 

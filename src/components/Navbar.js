@@ -3,18 +3,7 @@ import React, { useEffect,useLayoutEffect, useState, useDebugValue } from 'react
 
 const Navbar = (props) => {
 
-    
-  useEffect(() => {
-      window.addEventListener('scroll',()=>{
-        
-        console.log(123123)
-      })
-      return () => {
-          window.removeEventListener('scroll')
-      };
-  }, []);
-
-    
+  
     const lightsOn = { background: 'rgba(235, 235, 235, 0.7)', color: 'black' };
     const lightsOff = { background: 'rgba(11, 11, 11, 0.7)', color: 'white' };
     return (

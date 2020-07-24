@@ -1,16 +1,26 @@
-import React, { useEffect, useState, useDebugValue } from 'react';
-
-
+import React, { useEffect,useLayoutEffect, useState, useDebugValue } from 'react';
 
 
 const Navbar = (props) => {
 
+    
+  useEffect(() => {
+      window.addEventListener('scroll',()=>{
+        
+        console.log(123123)
+      })
+      return () => {
+          window.removeEventListener('scroll')
+      };
+  }, []);
+
+    
     const lightsOn = { background: 'rgba(235, 235, 235, 0.7)', color: 'black' };
     const lightsOff = { background: 'rgba(11, 11, 11, 0.7)', color: 'white' };
-
     return (
         <div className="navBar d-flex justify-content-between mr-5" style={props.light ? lightsOff : lightsOn}>
             <div>
+                
 
                 <button className={"lightbulb btn btn-" + (props.light  ? 'dark' : 'default')} onClick={() => props.turnOn()}>
                     <h6 className="d-inline-block mr-2">
